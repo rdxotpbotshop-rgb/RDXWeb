@@ -4,8 +4,19 @@ import { Space_Grotesk, Orbitron } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-sans" })
-const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-mono" })
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+})
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-orbitron",
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
+})
 
 export const metadata: Metadata = {
   title: "RDX Studio - Professional Web Development & Telegram Bots",
@@ -36,8 +47,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased ${spaceGrotesk.variable} ${orbitron.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${orbitron.variable}`}>
+      <body className={`${spaceGrotesk.className} antialiased`}>
         {children}
         <Analytics />
       </body>
